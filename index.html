@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Form Pengeluaran Harian</title>
-
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
 </head>
 
 <body>
   <div class="container">
     <h1>Form Pengeluaran Harian</h1>
+
     <form id="expenseForm">
       <label for="tanggal">Tanggal</label>
       <input type="date" id="tanggal" name="tanggal" required>
@@ -51,24 +51,18 @@
 
       const fileInput = document.getElementById("bukti").files[0];
       const formData = new FormData(form);
-
-      if (fileInput) {
-        // kirim file + data
-        formData.append("file", fileInput);
-      }
+      if (fileInput) formData.append("file", fileInput);
 
       fetch(scriptURL, { method: "POST", body: formData })
-        .then((response) => {
+        .then(() => {
           msg.innerHTML = "✅ Data berhasil dikirim!";
           form.reset();
           setTimeout(() => msg.innerHTML = "", 3000);
         })
-        .catch((error) => {
+        .catch(() => {
           msg.innerHTML = "❌ Gagal mengirim data!";
-          console.error("Error!", error.message);
         });
     });
   </script>
 </body>
 </html>
-
