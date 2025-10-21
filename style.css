@@ -49,23 +49,37 @@ input, select, textarea {
   transition: all 0.3s ease;
 }
 
-/* === INPUT TANGGAL HITAM === */
+/* === INPUT TANGGAL BIRU CERAH === */
 input[type="date"] {
-  background-color: #000; /* latar hitam */
+  background: linear-gradient(to right, #0078ff, #00c3ff); /* gradasi biru */
   color: #fff; /* teks putih */
-  border: 1px solid #00ffff; /* garis cyan */
+  border: none;
   border-radius: 8px;
   padding: 10px;
   width: 100%;
   font-size: 14px;
   outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
+/* Saat hover atau fokus */
 input[type="date"]:hover,
 input[type="date"]:focus {
-  background-color: #111; /* hitam lebih terang */
-  border-color: #00ffff;
-  color: #00ffff;
+  background: linear-gradient(to right, #00c3ff, #00ffff); /* biru → cyan */
+  color: #000; /* teks berubah hitam agar kontras */
+  font-weight: 600;
+}
+
+/* Warna ikon kalender (untuk browser modern) */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* ubah ikon jadi putih */
+  cursor: pointer;
+}
+
+/* Placeholder dan teks default */
+input[type="date"]::placeholder {
+  color: #eee;
 }
 
 /* === DROPDOWN KATEGORI HITAM === */
@@ -146,3 +160,4 @@ button:hover {
   font-weight: 500;
   color: #90ee90;
 }
+
