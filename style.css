@@ -51,7 +51,7 @@ input, select, textarea {
 /* === DROPDOWN BIRU === */
 select {
   background: linear-gradient(to right, #0078ff, #00c3ff);
-  color: #fff;
+  color: #000;
   cursor: pointer;
   transition: all 0.3s ease;
   appearance: none;
@@ -124,4 +124,5 @@ button:hover {
   font-weight: 500;
   color: #90ee90;
 }
+
 
