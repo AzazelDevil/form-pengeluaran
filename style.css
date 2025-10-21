@@ -1,191 +1,111 @@
-/* === STYLE DASAR HALAMAN === */
+/* === Tampilan Dasar Halaman === */
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(120deg, #001f3f, #0078ff);
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  font-family: "Poppins", Arial, sans-serif;
+  background: linear-gradient(135deg, #d8ecff 0%, #ffffff 100%);
+  color: #222;
+  padding: 40px;
   margin: 0;
 }
 
-/* === FORM CONTAINER === */
-.container {
-  background-color: rgba(255, 255, 255, 0.1);
-  padding: 30px 40px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-  backdrop-filter: blur(10px);
-  width: 380px;
+h2 {
   text-align: center;
+  color: #004aad;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 25px;
 }
 
-.container h2 {
-  margin-bottom: 20px;
-  color: #00ffff;
-  font-size: 22px;
-  text-shadow: 0 0 8px #00ffff;
+/* === Container Form === */
+form {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 18px;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
 }
 
-/* === LABEL === */
 label {
   display: block;
-  text-align: left;
-  margin: 10px 0 5px;
+  margin-top: 15px;
   font-weight: 600;
-  color: #fff;
+  font-size: 15px;
+  color: #333;
 }
 
-/* === INPUT TEXT UMUM === */
-input[type="text"],
-input[type="number"],
-textarea {
+/* === Input, Select, Textarea === */
+input, select, textarea {
   width: 100%;
-  padding: 10px;
-  border: 1px solid #00ffff;
-  border-radius: 8px;
-  background-color: #001a33;
-  color: #fff;
-  font-size: 14px;
-  box-sizing: border-box;
-  outline: none;
-  transition: 0.3s ease;
-}
-
-input[type="text"]:focus,
-input[type="number"]:focus,
-textarea:focus {
-  border-color: #00ffff;
-  background-color: #002b5e;
-}
-
-/* === INPUT TANGGAL === */
-input[type="date"] {
-  background-color: #0078ff;
-  color: #000;
-  border: 1px solid #00ffff;
-  border-radius: 8px;
-  padding: 10px;
-  width: 100%;
-  font-size: 14px;
-  outline: none;
-  box-sizing: border-box;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  transition: all 0.3s ease;
-}
-
-input[type="date"]:hover,
-input[type="date"]:focus {
-  background-color: #00bfff;
-  color: #000;
-  border-color: #00ffff;
-  font-weight: 600;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  background-color: #00ffff;
-  border-radius: 4px;
-  padding: 3px;
-  cursor: pointer;
-  filter: invert(0);
-}
-
-/* === DROPDOWN KATEGORI HITAM === */
-select {
-  background-color: #000; /* warna dasar hitam */
-  color: #fff; /* teks putih */
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #00ffff;
-  outline: none;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  appearance: none;
-  cursor: pointer;
-}
-
-/* Saat fokus atau hover dropdown */
-select:hover, select:focus {
-  background-color: #111; /* hitam sedikit lebih terang */
-  color: #00ffff; /* teks cyan saat aktif */
-  border-color: #00ffff;
-  font-weight: 600;
-}
-
-/* === MENU PILIHAN DALAM DROPDOWN === */
-option {
-  background-color: #000; /* latar hitam */
-  color: #fff; /* teks putih */
-  font-weight: 500;
-  padding: 8px;
-}
-
-/* Saat item dropdown disorot */
-select option:hover,
-select option:checked {
-  background-color: #222; /* hitam abu gelap */
-  color: #00ffff; /* teks cyan saat dipilih */
-}
-
-
-
-/* === INPUT FILE === */
-input[type="file"] {
-  background-color: #001a33;
-  color: #fff;
-  border: 1px solid #00ffff;
-  border-radius: 8px;
-  padding: 10px;
-  width: 100%;
-  font-size: 14px;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-input[type="file"]:hover {
-  background-color: #002b5e;
-}
-
-/* === TOMBOL KIRIM === */
-button {
-  background: linear-gradient(to right, #0078ff, #00ffff);
-  border: none;
-  color: #000;
-  padding: 12px 20px;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border: 1px solid #ccc;
   border-radius: 10px;
   font-size: 15px;
-  font-weight: bold;
+  color: #000; /* teks hitam agar jelas */
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: all 0.25s ease-in-out;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.4);
+  outline: none;
+}
+
+/* === Dropdown kategori dengan warna biru gradasi === */
+select {
+  background: linear-gradient(90deg, #007bff 0%, #0056b3 100%);
+  color: #fff;
+  font-weight: 500;
+}
+
+select option {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* === Input File === */
+input[type="file"] {
+  background: #f8f9fa;
+  border: 1px solid #ccc;
   cursor: pointer;
-  transition: 0.3s ease;
+}
+
+/* === Tombol Kirim === */
+button {
   width: 100%;
-  margin-top: 15px;
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  margin-top: 25px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background: linear-gradient(to right, #00ffff, #00bfff);
-  transform: scale(1.03);
+  background: linear-gradient(90deg, #0056b3, #004099);
 }
 
-/* === PESAN STATUS === */
-.status {
-  margin-top: 15px;
+/* === Pesan Status === */
+#status {
+  text-align: center;
+  margin-top: 18px;
   font-weight: bold;
   font-size: 14px;
 }
 
-/* === RESPONSIVE DESIGN (HP) === */
-@media (max-width: 480px) {
-  .container {
-    width: 90%;
-    padding: 25px;
+/* === Efek Responsif untuk Mobile === */
+@media (max-width: 600px) {
+  form {
+    padding: 20px;
   }
-  .container h2 {
-    font-size: 20px;
+  h2 {
+    font-size: 22px;
   }
 }
-
-
