@@ -51,37 +51,48 @@ input, select, textarea {
 
 /* === INPUT TANGGAL BIRU (TEKS HITAM) === */
 input[type="date"] {
-  background: linear-gradient(to right, #0078ff, #00c3ff); /* gradasi biru */
-  color: #000; /* teks hitam agar jelas */
-  border: none;
+  background-color: #0078ff; /* biru solid */
+  color: #000; /* teks hitam */
+  border: 1px solid #00ffff;
   border-radius: 8px;
   padding: 10px;
   width: 100%;
   font-size: 14px;
   outline: none;
-  transition: all 0.3s ease;
   box-sizing: border-box;
+  appearance: none; /* hapus gaya default browser */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  transition: all 0.3s ease;
 }
 
 /* Saat hover atau fokus */
 input[type="date"]:hover,
 input[type="date"]:focus {
-  background: linear-gradient(to right, #00c3ff, #00ffff); /* gradasi lebih terang */
-  color: #000; /* tetap hitam */
+  background-color: #00bfff; /* biru muda */
+  color: #000; /* teks tetap hitam */
+  border-color: #00ffff;
   font-weight: 600;
-  border: 1px solid #00ffff;
 }
 
-/* Ubah warna ikon kalender agar terlihat di latar biru */
+/* === Ubah tampilan panah dan ikon kalender === */
 input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(0); /* ikon kalender tetap gelap (karena latar terang) */
+  background-color: #00ffff;
+  border-radius: 4px;
+  padding: 3px;
   cursor: pointer;
+  filter: invert(0); /* biar ikon tetap gelap */
 }
 
-/* Placeholder */
+/* Placeholder (untuk browser yang menampilkannya) */
 input[type="date"]::placeholder {
   color: #000;
   opacity: 0.7;
+}
+
+/* Untuk Firefox dan Edge agar latar paksa biru */
+input[type="date"]::-moz-focus-inner {
+  border: 0;
 }
 
 /* === DROPDOWN KATEGORI HITAM === */
@@ -162,5 +173,6 @@ button:hover {
   font-weight: 500;
   color: #90ee90;
 }
+
 
 
