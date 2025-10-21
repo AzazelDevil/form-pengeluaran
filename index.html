@@ -3,70 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <title>Form Pengeluaran Harian</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f4ff;
-      color: #333;
-      padding: 20px;
-    }
-    form {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 450px;
-      margin: auto;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    input, select, textarea, button {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
-    }
-    select {
-      background: linear-gradient(90deg, #007bff, #0056b3);
-      color: white;
-    }
-    button {
-      background: #007bff;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #0056b3;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <h2>Form Pengeluaran Harian</h2>
+
   <form id="pengeluaranForm">
-    <label>Tanggal:</label>
-    <input type="date" name="tanggal" required>
-    <label>Kategori:</label>
-    <select name="kategori" required>
+    <label for="tanggal">Tanggal:</label>
+    <input type="date" id="tanggal" name="tanggal" required>
+
+    <label for="kategori">Kategori:</label>
+    <select id="kategori" name="kategori" required>
       <option value="">Pilih kategori</option>
       <option value="Transportasi">Transportasi</option>
       <option value="Makanan">Makanan</option>
       <option value="Belanja">Belanja</option>
       <option value="Lainnya">Lainnya</option>
     </select>
-    <label>Deskripsi:</label>
-    <textarea name="deskripsi" rows="3" required></textarea>
-    <label>Jumlah (Rp):</label>
-    <input type="number" name="jumlah" required>
-    <label>Bukti (opsional):</label>
+
+    <label for="deskripsi">Deskripsi:</label>
+    <textarea id="deskripsi" name="deskripsi" rows="3" placeholder="Tulis deskripsi pengeluaran..." required></textarea>
+
+    <label for="jumlah">Jumlah (Rp):</label>
+    <input type="number" id="jumlah" name="jumlah" placeholder="Masukkan jumlah pengeluaran" required>
+
+    <label for="file">Bukti (opsional):</label>
     <input type="file" id="file" name="file" accept="image/*,application/pdf">
+
     <button type="submit">Kirim</button>
   </form>
 
   <p id="status"></p>
 
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbybPBR3MUyeLVokWFGhkdEaqxXuX4pfbPL1NheIOSeXIDgBnEwtunSYguWYSZIm5v-8OA/exec"; // Ganti dengan URL Apps Script kamu
+    const scriptURL = "https://script.google.com/macros/s/AKfycbybPBR3MUyeLVokWFGhkdEaqxXuX4pfbPL1NheIOSeXIDgBnEwtunSYguWYSZIm5v-8OA/exec"; // Ganti dengan URL Web App kamu
 
     document.getElementById("pengeluaranForm").addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -74,6 +45,7 @@
       const fileInput = document.getElementById("file");
       const file = fileInput.files[0];
       const status = document.getElementById("status");
+      status.style.color = "#333";
       status.innerText = "Mengirim data...";
 
       if (file) {
@@ -105,17 +77,22 @@
             body: JSON.stringify(data)
           });
           const result = await res.json();
+
           if (result.status === "success") {
+            status.style.color = "green";
             status.innerText = "✅ Data dan file berhasil dikirim!";
             form.reset();
           } else {
+            status.style.color = "orange";
             status.innerText = "⚠️ Gagal: " + result.message;
           }
         } catch (err) {
+          status.style.color = "red";
           status.innerText = "❌ Error: " + err.message;
         }
       }
     });
   </script>
+
 </body>
 </html>
