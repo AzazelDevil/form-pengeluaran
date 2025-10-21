@@ -1,3 +1,4 @@
+/* === RESET DASAR === */
 body {
   margin: 0;
   padding: 0;
@@ -10,6 +11,7 @@ body {
   align-items: center;
 }
 
+/* === CONTAINER UTAMA === */
 .container {
   background: rgba(255, 255, 255, 0.08);
   border-radius: 20px;
@@ -27,6 +29,7 @@ h1 {
   letter-spacing: 1px;
 }
 
+/* === LABEL DAN INPUT === */
 label {
   font-weight: 600;
   display: block;
@@ -46,18 +49,47 @@ input, select, textarea {
   box-sizing: border-box;
 }
 
+/* === KHUSUS UNTUK DROPDOWN KATEGORI === */
+select {
+  background-image: linear-gradient(to right, #0078ff, #00c3ff);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  appearance: none; /* Hilangkan panah default browser */
+}
+
+select:hover, select:focus {
+  background-image: linear-gradient(to right, #00c3ff, #00ffff);
+  color: #000;
+  font-weight: 600;
+}
+
+/* Warna teks item dropdown */
+option {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* === TEXTAREA === */
+textarea {
+  resize: none;
+}
+
+/* === INPUT FILE (UPLOAD BUKTI) === */
 input[type="file"] {
   background-color: transparent;
   border: 1px dashed #00ffff;
   cursor: pointer;
   padding: 8px;
   color: #00ffff;
+  transition: all 0.3s ease;
 }
 
 input[type="file"]:hover {
   background-color: rgba(0, 255, 255, 0.1);
 }
 
+/* === TOMBOL SUBMIT === */
 button {
   width: 100%;
   background-color: #00ffff;
@@ -76,6 +108,7 @@ button:hover {
   transform: scale(1.03);
 }
 
+/* === PESAN STATUS === */
 .msg {
   margin-top: 15px;
   text-align: center;
