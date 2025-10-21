@@ -40,63 +40,6 @@
     </form>
   </div>
 
-  <script>
-    const scriptURL = "MASUKKAN_URL_WEB_APP_DI_SINI"; // Ganti dengan URL Web App kamu
-
-    document.getElementById("pengeluaranForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const fileInput = document.getElementById("file");
-      const file = fileInput.files[0];
-      const status = document.getElementById("status");
-      status.style.color = "#333";
-      status.innerText = "Mengirim data...";
-
-      if (file) {
-        const reader = new FileReader();
-        reader.onloadend = async () => {
-          const base64 = reader.result.split(",")[1];
-          await kirimData(base64, file.name, file.type);
-        };
-        reader.readAsDataURL(file);
-      } else {
-        await kirimData("", "", "");
-      }
-
-      async function kirimData(fileContent, fileName, mimeType) {
-        const data = {
-          tanggal: form.tanggal.value,
-          kategori: form.kategori.value,
-          deskripsi: form.deskripsi.value,
-          jumlah: form.jumlah.value,
-          fileContent,
-          fileName,
-          mimeType
-        };
-
-        try {
-          const res = await fetch(scriptURL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-          });
-          const result = await res.json();
-
-          if (result.status === "success") {
-            status.style.color = "green";
-            status.innerText = "✅ Data dan file berhasil dikirim!";
-            form.reset();
-          } else {
-            status.style.color = "orange";
-            status.innerText = "⚠️ Gagal: " + result.message;
-          }
-        } catch (err) {
-          status.style.color = "red";
-          status.innerText = "❌ Error: " + err.message;
-        }
-      }
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
