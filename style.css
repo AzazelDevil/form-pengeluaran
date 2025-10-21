@@ -51,7 +51,7 @@ input, select, textarea {
 /* === DROPDOWN BIRU === */
 select {
   background: linear-gradient(to right, #0078ff, #00c3ff);
-  color: #000;
+  color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
   appearance: none;
@@ -67,7 +67,7 @@ select:hover, select:focus {
 /* === MENU PILIHAN DROPDOWN === */
 option {
   background-color: #0078ff; /* biru solid */
-  color: #000000;
+  color: #ffffff;
   font-weight: 500;
   padding: 8px;
 }
@@ -124,5 +124,6 @@ button:hover {
   font-weight: 500;
   color: #90ee90;
 }
+
 
 
