@@ -48,34 +48,44 @@ input, select, textarea {
   box-sizing: border-box;
 }
 
-/* === DROPDOWN BIRU === */
+/* === DROPDOWN KATEGORI HITAM === */
 select {
-  background: linear-gradient(to right, #0078ff, #00c3ff);
-  color: #fff;
-  cursor: pointer;
+  background-color: #000; /* warna dasar hitam */
+  color: #fff; /* teks putih */
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #00ffff;
+  outline: none;
+  font-size: 14px;
   transition: all 0.3s ease;
   appearance: none;
-  border: 1px solid #00ffff;
+  cursor: pointer;
 }
 
+/* Saat fokus atau hover dropdown */
 select:hover, select:focus {
-  background: linear-gradient(to right, #00c3ff, #00ffff);
-  color: #000;
+  background-color: #111; /* hitam sedikit lebih terang */
+  color: #00ffff; /* teks cyan saat aktif */
+  border-color: #00ffff;
   font-weight: 600;
 }
 
-/* === MENU PILIHAN DROPDOWN === */
+/* === MENU PILIHAN DALAM DROPDOWN === */
 option {
-  background-color: #0078ff; /* biru solid */
-  color: #ffffff;
+  background-color: #000; /* latar hitam */
+  color: #fff; /* teks putih */
   font-weight: 500;
   padding: 8px;
 }
 
-select option:checked,
-select option:hover {
-  background-color: #00aaff;
-  color: #000;
+/* Saat item dropdown disorot */
+select option:hover,
+select option:checked {
+  background-color: #222; /* hitam abu gelap */
+  color: #00ffff; /* teks cyan saat dipilih */
+}
+
 }
 
 /* === TEXTAREA === */
@@ -124,6 +134,7 @@ button:hover {
   font-weight: 500;
   color: #90ee90;
 }
+
 
 
 
