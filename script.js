@@ -1,5 +1,5 @@
 // === URL Google Apps Script ===
-const scriptURL = "MASUKKAN_URL_WEB_APP_DI_SINI"; // Ganti dengan URL Web App kamu
+const scriptURL = "https://script.google.com/macros/s/AKfycbybPBR3MUyeLVokWFGhkdEaqxXuX4pfbPL1NheIOSeXIDgBnEwtunSYguWYSZIm5v-8OA/exec"; // Ganti dengan URL Web App kamu
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("pengeluaranForm");
