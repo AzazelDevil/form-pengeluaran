@@ -1,58 +1,69 @@
-/* === LATAR BELAKANG === */
+/* === STYLE DASAR HALAMAN === */
 body {
-  margin: 0;
-  padding: 0;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
+  background: linear-gradient(120deg, #001f3f, #0078ff);
   color: #fff;
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-/* === KOTAK FORM === */
+/* === FORM CONTAINER === */
 .container {
-  background: rgba(255, 255, 255, 0.08);
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 30px 40px;
   border-radius: 20px;
-  padding: 30px;
-  width: 90%;
-  max-width: 420px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
   backdrop-filter: blur(10px);
-}
-
-h1 {
+  width: 380px;
   text-align: center;
+}
+
+.container h2 {
+  margin-bottom: 20px;
   color: #00ffff;
-  margin-bottom: 25px;
-  letter-spacing: 1px;
+  font-size: 22px;
+  text-shadow: 0 0 8px #00ffff;
 }
 
-/* === LABEL DAN INPUT === */
+/* === LABEL === */
 label {
-  font-weight: 600;
   display: block;
-  margin-top: 15px;
-  margin-bottom: 5px;
+  text-align: left;
+  margin: 10px 0 5px;
+  font-weight: 600;
+  color: #fff;
 }
 
-input, select, textarea {
+/* === INPUT TEXT UMUM === */
+input[type="text"],
+input[type="number"],
+textarea {
   width: 100%;
   padding: 10px;
+  border: 1px solid #00ffff;
   border-radius: 8px;
-  border: none;
-  outline: none;
-  font-size: 14px;
+  background-color: #001a33;
   color: #fff;
+  font-size: 14px;
   box-sizing: border-box;
-  transition: all 0.3s ease;
+  outline: none;
+  transition: 0.3s ease;
 }
 
-/* === INPUT TANGGAL BIRU (TEKS HITAM) === */
+input[type="text"]:focus,
+input[type="number"]:focus,
+textarea:focus {
+  border-color: #00ffff;
+  background-color: #002b5e;
+}
+
+/* === INPUT TANGGAL === */
 input[type="date"] {
-  background-color: #0078ff; /* biru solid */
-  color: #000; /* teks hitam */
+  background-color: #0078ff;
+  color: #000;
   border: 1px solid #00ffff;
   border-radius: 8px;
   padding: 10px;
@@ -60,44 +71,31 @@ input[type="date"] {
   font-size: 14px;
   outline: none;
   box-sizing: border-box;
-  appearance: none; /* hapus gaya default browser */
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   transition: all 0.3s ease;
 }
 
-/* Saat hover atau fokus */
 input[type="date"]:hover,
 input[type="date"]:focus {
-  background-color: #00bfff; /* biru muda */
-  color: #000; /* teks tetap hitam */
+  background-color: #00bfff;
+  color: #000;
   border-color: #00ffff;
   font-weight: 600;
 }
 
-/* === Ubah tampilan panah dan ikon kalender === */
 input[type="date"]::-webkit-calendar-picker-indicator {
   background-color: #00ffff;
   border-radius: 4px;
   padding: 3px;
   cursor: pointer;
-  filter: invert(0); /* biar ikon tetap gelap */
+  filter: invert(0);
 }
 
-/* Placeholder (untuk browser yang menampilkannya) */
-input[type="date"]::placeholder {
-  color: #000;
-  opacity: 0.7;
-}
-
-/* Untuk Firefox dan Edge agar latar paksa biru */
-input[type="date"]::-moz-focus-inner {
-  border: 0;
-}
-
-/* === DROPDOWN KATEGORI HITAM === */
+/* === DROPDOWN KATEGORI === */
 select {
-  background-color: #000; /* hitam */
+  background: linear-gradient(to right, #0078ff, #00c3ff);
   color: #fff;
   border: 1px solid #00ffff;
   border-radius: 8px;
@@ -105,17 +103,19 @@ select {
   font-size: 14px;
   cursor: pointer;
   appearance: none;
+  transition: all 0.3s ease;
+  width: 100%;
 }
 
 select:hover, select:focus {
-  background-color: #111;
-  color: #00ffff;
+  background: linear-gradient(to right, #00c3ff, #00ffff);
+  color: #000;
   font-weight: 600;
 }
 
 /* === MENU PILIHAN DALAM DROPDOWN === */
 option {
-  background-color: #000;
+  background-color: #0078ff;
   color: #fff;
   font-weight: 500;
   padding: 8px;
@@ -123,56 +123,61 @@ option {
 
 select option:hover,
 select option:checked {
-  background-color: #222;
-  color: #00ffff;
+  background-color: #00aaff;
+  color: #000;
 }
 
-/* === TEXTAREA === */
-textarea {
-  resize: none;
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* === UPLOAD FILE === */
+/* === INPUT FILE === */
 input[type="file"] {
-  background-color: transparent;
-  border: 1px dashed #00ffff;
+  background-color: #001a33;
+  color: #fff;
+  border: 1px solid #00ffff;
+  border-radius: 8px;
+  padding: 10px;
+  width: 100%;
+  font-size: 14px;
+  box-sizing: border-box;
   cursor: pointer;
-  padding: 8px;
-  color: #00ffff;
-  transition: all 0.3s ease;
 }
 
 input[type="file"]:hover {
-  background-color: rgba(0, 255, 255, 0.1);
+  background-color: #002b5e;
 }
 
-/* === TOMBOL SUBMIT === */
+/* === TOMBOL KIRIM === */
 button {
-  width: 100%;
-  background-color: #00ffff;
-  color: #000;
-  font-weight: 600;
-  padding: 12px;
+  background: linear-gradient(to right, #0078ff, #00ffff);
   border: none;
+  color: #000;
+  padding: 12px 20px;
   border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
-  margin-top: 20px;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
+  width: 100%;
+  margin-top: 15px;
 }
 
 button:hover {
-  background-color: #00cccc;
+  background: linear-gradient(to right, #00ffff, #00bfff);
   transform: scale(1.03);
 }
 
 /* === PESAN STATUS === */
-.msg {
+.status {
   margin-top: 15px;
-  text-align: center;
-  font-weight: 500;
-  color: #90ee90;
+  font-weight: bold;
+  font-size: 14px;
 }
 
-
-
+/* === RESPONSIVE DESIGN (HP) === */
+@media (max-width: 480px) {
+  .container {
+    width: 90%;
+    padding: 25px;
+  }
+  .container h2 {
+    font-size: 20px;
+  }
+}
