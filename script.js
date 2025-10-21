@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // === GANTI DENGAN URL WEB APP GOOGLE SCRIPT MILIKMU ===
-  const scriptURL = "https://script.google.com/macros/s/AKfycbybPBR3MUyeLVokWFGhkdEaqxXuX4pfbPL1NheIOSeXIDgBnEwtunSYguWYSZIm5v-8OA/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwAoZm8cGBZCh1inKDFGuqcF-ixkvvrHtqGOa260ruwsvRwSGMtgZeJ1_rK2ZrY2moyKw/exec";
 
   const form = document.getElementById("pengeluaranForm");
   const fileInput = document.getElementById("bukti");
