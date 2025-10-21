@@ -21,27 +21,6 @@ body {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
 }
-/* === INPUT TANGGAL HITAM === */
-input[type="date"] {
-  background-color: #000; /* latar hitam */
-  color: #fff; /* teks putih */
-  border: 1px solid #00ffff; /* garis cyan agar serasi */
-  border-radius: 8px;
-  padding: 10px;
-  width: 100%;
-  font-size: 14px;
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-/* Saat hover atau fokus */
-input[type="date"]:hover,
-input[type="date"]:focus {
-  background-color: #111; /* sedikit lebih terang */
-  border-color: #00ffff;
-  color: #00ffff; /* teks berubah cyan saat aktif */
-}
-
 
 h1 {
   text-align: center;
@@ -67,52 +46,64 @@ input, select, textarea {
   font-size: 14px;
   color: #fff;
   box-sizing: border-box;
+  transition: all 0.3s ease;
+}
+
+/* === INPUT TANGGAL HITAM === */
+input[type="date"] {
+  background-color: #000; /* latar hitam */
+  color: #fff; /* teks putih */
+  border: 1px solid #00ffff; /* garis cyan */
+  border-radius: 8px;
+  padding: 10px;
+  width: 100%;
+  font-size: 14px;
+  outline: none;
+}
+
+input[type="date"]:hover,
+input[type="date"]:focus {
+  background-color: #111; /* hitam lebih terang */
+  border-color: #00ffff;
+  color: #00ffff;
 }
 
 /* === DROPDOWN KATEGORI HITAM === */
 select {
-  background-color: #000; /* warna dasar hitam */
-  color: #fff; /* teks putih */
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
+  background-color: #000; /* hitam */
+  color: #fff;
   border: 1px solid #00ffff;
-  outline: none;
+  border-radius: 8px;
+  padding: 10px;
   font-size: 14px;
-  transition: all 0.3s ease;
-  appearance: none;
   cursor: pointer;
+  appearance: none;
 }
 
-/* Saat fokus atau hover dropdown */
 select:hover, select:focus {
-  background-color: #111; /* hitam sedikit lebih terang */
-  color: #00ffff; /* teks cyan saat aktif */
-  border-color: #00ffff;
+  background-color: #111;
+  color: #00ffff;
   font-weight: 600;
 }
 
 /* === MENU PILIHAN DALAM DROPDOWN === */
 option {
-  background-color: #000; /* latar hitam */
-  color: #fff; /* teks putih */
+  background-color: #000;
+  color: #fff;
   font-weight: 500;
   padding: 8px;
 }
 
-/* Saat item dropdown disorot */
 select option:hover,
 select option:checked {
-  background-color: #222; /* hitam abu gelap */
-  color: #00ffff; /* teks cyan saat dipilih */
-}
-
+  background-color: #222;
+  color: #00ffff;
 }
 
 /* === TEXTAREA === */
 textarea {
   resize: none;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* === UPLOAD FILE === */
@@ -155,8 +146,3 @@ button:hover {
   font-weight: 500;
   color: #90ee90;
 }
-
-
-
-
-
