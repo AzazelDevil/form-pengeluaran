@@ -4,88 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Form Pengeluaran Harian</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom right, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-    }
-    h1 {
-      margin-top: 30px;
-      color: #00ffff;
-    }
-    form {
-      background-color: rgba(255,255,255,0.1);
-      padding: 20px;
-      border-radius: 15px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: none;
-      margin-top: 5px;
-      box-sizing: border-box;
-    }
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 10px;
-      background-color: #00ffff;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #00cccc;
-    }
-    .msg {
-      margin-top: 15px;
-      text-align: center;
-      color: #90ee90;
-    }
-  </style>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <h1>Form Pengeluaran Harian</h1>
-  <form id="expenseForm">
-    <label for="tanggal">Tanggal</label>
-    <input type="date" id="tanggal" name="tanggal" required>
+  <div class="container">
+    <h1>Form Pengeluaran Harian</h1>
+    <form id="expenseForm">
+      <label for="tanggal">Tanggal</label>
+      <input type="date" id="tanggal" name="tanggal" required>
 
-    <label for="kategori">Kategori</label>
-    <select id="kategori" name="kategori" required>
-      <option value="">-- Pilih Kategori --</option>
-      <option value="Makanan">Makanan</option>
-      <option value="Transportasi">Transportasi</option>
-      <option value="Tagihan">Tagihan</option>
-      <option value="Belanja">Belanja</option>
-      <option value="Lain-lain">Lain-lain</option>
-    </select>
+      <label for="kategori">Kategori</label>
+      <select id="kategori" name="kategori" required>
+        <option value="">-- Pilih Kategori --</option>
+        <option value="Makanan">Makanan</option>
+        <option value="Transportasi">Transportasi</option>
+        <option value="Tagihan">Tagihan</option>
+        <option value="Belanja">Belanja</option>
+        <option value="Lain-lain">Lain-lain</option>
+      </select>
 
-    <label for="deskripsi">Deskripsi</label>
-    <textarea id="deskripsi" name="deskripsi" rows="3" required></textarea>
+      <label for="deskripsi">Deskripsi</label>
+      <textarea id="deskripsi" name="deskripsi" rows="3" required></textarea>
 
-    <label for="jumlah">Jumlah (Rp)</label>
-    <input type="number" id="jumlah" name="jumlah" required>
+      <label for="jumlah">Jumlah (Rp)</label>
+      <input type="number" id="jumlah" name="jumlah" required>
 
-    <button type="submit">Kirim</button>
-    <p class="msg" id="msg"></p>
-  </form>
+      <label for="bukti">Upload Bukti (opsional)</label>
+      <input type="file" id="bukti" name="bukti" accept=".jpg,.jpeg,.png,.pdf">
+
+      <button type="submit">💾 Simpan Pengeluaran</button>
+      <p id="msg" class="msg"></p>
+    </form>
+  </div>
 
   <script>
     const scriptURL = "https://script.google.com/macros/s/AKfycbziR57vX_X2lemNA2EvZsF3CtNLjXWxxdz4X5ZdTv3DHdGLCWI6fr8u7Kffsimp6R7IKQ/exec";
@@ -94,7 +47,17 @@
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      fetch(scriptURL, { method: "POST", body: new FormData(form) })
+      msg.innerHTML = "⏳ Mengirim data...";
+
+      const fileInput = document.getElementById("bukti").files[0];
+      const formData = new FormData(form);
+
+      if (fileInput) {
+        // kirim file + data
+        formData.append("file", fileInput);
+      }
+
+      fetch(scriptURL, { method: "POST", body: formData })
         .then((response) => {
           msg.innerHTML = "✅ Data berhasil dikirim!";
           form.reset();
