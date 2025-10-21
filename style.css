@@ -67,7 +67,7 @@ select:hover, select:focus {
 /* === MENU PILIHAN DROPDOWN === */
 option {
   background-color: #0078ff; /* biru solid */
-  color: #ffffff;
+  color: #000000;
   font-weight: 500;
   padding: 8px;
 }
@@ -124,3 +124,4 @@ button:hover {
   font-weight: 500;
   color: #90ee90;
 }
+
