@@ -93,27 +93,46 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(0);
 }
 
-/* === DROPDOWN KATEGORI === */
+/* === DROPDOWN KATEGORI BIRU GRADIASI (FULL CHROME SUPPORT) === */
 select {
-  background: linear-gradient(to right, #0078ff, #00c3ff);
+  background: linear-gradient(to right, #0066ff, #00ccff); /* gradasi biru */
   color: #fff;
   border: 1px solid #00ffff;
   border-radius: 8px;
   padding: 10px;
   font-size: 14px;
   cursor: pointer;
-  appearance: none;
-  transition: all 0.3s ease;
+  appearance: none; /* Hilangkan gaya bawaan browser */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
   width: 100%;
+  transition: 0.3s ease;
+  box-sizing: border-box;
 }
 
-select:hover, select:focus {
-  background: linear-gradient(to right, #00c3ff, #00ffff);
+/* Tambahkan ikon panah custom agar tetap ada */
+select::after {
+  content: '▼';
+  font-size: 12px;
+  color: #fff;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Efek saat hover atau fokus */
+select:hover,
+select:focus {
+  background: linear-gradient(to right, #00bfff, #00ffff);
   color: #000;
   font-weight: 600;
+  border-color: #00ffff;
 }
 
-/* === MENU PILIHAN DALAM DROPDOWN === */
+/* Item dropdown (background di dalam list) */
 option {
   background-color: #0078ff;
   color: #fff;
@@ -121,11 +140,13 @@ option {
   padding: 8px;
 }
 
+/* Saat item di-hover di dalam dropdown */
 select option:hover,
 select option:checked {
   background-color: #00aaff;
   color: #000;
 }
+
 
 /* === INPUT FILE === */
 input[type="file"] {
@@ -181,3 +202,4 @@ button:hover {
     font-size: 20px;
   }
 }
+
