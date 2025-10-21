@@ -93,59 +93,44 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(0);
 }
 
-/* === DROPDOWN KATEGORI BIRU GRADIASI (FULL CHROME SUPPORT) === */
+/* === DROPDOWN KATEGORI HITAM === */
 select {
-  background: linear-gradient(to right, #0066ff, #00ccff); /* gradasi biru */
-  color: #fff;
-  border: 1px solid #00ffff;
-  border-radius: 8px;
-  padding: 10px;
-  font-size: 14px;
-  cursor: pointer;
-  appearance: none; /* Hilangkan gaya bawaan browser */
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  position: relative;
+  background-color: #000; /* warna dasar hitam */
+  color: #fff; /* teks putih */
   width: 100%;
-  transition: 0.3s ease;
-  box-sizing: border-box;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #00ffff;
+  outline: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  appearance: none;
+  cursor: pointer;
 }
 
-/* Tambahkan ikon panah custom agar tetap ada */
-select::after {
-  content: '▼';
-  font-size: 12px;
-  color: #fff;
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
-/* Efek saat hover atau fokus */
-select:hover,
-select:focus {
-  background: linear-gradient(to right, #00bfff, #00ffff);
-  color: #000;
-  font-weight: 600;
+/* Saat fokus atau hover dropdown */
+select:hover, select:focus {
+  background-color: #111; /* hitam sedikit lebih terang */
+  color: #00ffff; /* teks cyan saat aktif */
   border-color: #00ffff;
+  font-weight: 600;
 }
 
-/* Item dropdown (background di dalam list) */
+/* === MENU PILIHAN DALAM DROPDOWN === */
 option {
-  background-color: #0078ff;
-  color: #fff;
+  background-color: #000; /* latar hitam */
+  color: #fff; /* teks putih */
   font-weight: 500;
   padding: 8px;
 }
 
-/* Saat item di-hover di dalam dropdown */
+/* Saat item dropdown disorot */
 select option:hover,
 select option:checked {
-  background-color: #00aaff;
-  color: #000;
+  background-color: #222; /* hitam abu gelap */
+  color: #00ffff; /* teks cyan saat dipilih */
 }
+
 
 
 /* === INPUT FILE === */
@@ -202,4 +187,5 @@ button:hover {
     font-size: 20px;
   }
 }
+
 
