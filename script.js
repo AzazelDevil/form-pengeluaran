@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   // === GANTI DENGAN URL WEB APP GOOGLE SCRIPT MILIKMU ===
-  const scriptURL = "MASUKKAN_URL_WEB_APP_GOOGLE_SCRIPT_DI_SINI";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbybPBR3MUyeLVokWFGhkdEaqxXuX4pfbPL1NheIOSeXIDgBnEwtunSYguWYSZIm5v-8OA/exec";
 
   const form = document.getElementById("pengeluaranForm");
   const fileInput = document.getElementById("bukti");
