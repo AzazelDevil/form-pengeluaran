@@ -1,4 +1,4 @@
-/* === RESET DASAR === */
+/* === LATAR BELAKANG === */
 body {
   margin: 0;
   padding: 0;
@@ -11,7 +11,7 @@ body {
   align-items: center;
 }
 
-/* === CONTAINER UTAMA === */
+/* === KOTAK FORM === */
 .container {
   background: rgba(255, 255, 255, 0.08);
   border-radius: 20px;
@@ -44,38 +44,47 @@ input, select, textarea {
   border: none;
   outline: none;
   font-size: 14px;
-  background-color: rgba(255, 255, 255, 0.2);
   color: #fff;
   box-sizing: border-box;
 }
 
-/* === KHUSUS UNTUK DROPDOWN KATEGORI === */
+/* === DROPDOWN BIRU === */
 select {
-  background-image: linear-gradient(to right, #0078ff, #00c3ff);
+  background: linear-gradient(to right, #0078ff, #00c3ff);
   color: #fff;
   cursor: pointer;
   transition: all 0.3s ease;
-  appearance: none; /* Hilangkan panah default browser */
+  appearance: none;
+  border: 1px solid #00ffff;
 }
 
 select:hover, select:focus {
-  background-image: linear-gradient(to right, #00c3ff, #00ffff);
+  background: linear-gradient(to right, #00c3ff, #00ffff);
   color: #000;
   font-weight: 600;
 }
 
-/* Warna teks item dropdown */
+/* === MENU PILIHAN DROPDOWN === */
 option {
-  background-color: #ffffff;
-  color: #000000;
+  background-color: #0078ff; /* biru solid */
+  color: #ffffff;
+  font-weight: 500;
+  padding: 8px;
+}
+
+select option:checked,
+select option:hover {
+  background-color: #00aaff;
+  color: #000;
 }
 
 /* === TEXTAREA === */
 textarea {
   resize: none;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* === INPUT FILE (UPLOAD BUKTI) === */
+/* === UPLOAD FILE === */
 input[type="file"] {
   background-color: transparent;
   border: 1px dashed #00ffff;
