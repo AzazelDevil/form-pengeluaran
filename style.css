@@ -21,28 +21,22 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
-.header {
+h1 {
   text-align: center;
   margin-bottom: 20px;
-}
-
-.header h1 {
-  margin: 0;
   color: #1a73e8;
 }
 
-/* ===== FORM ===== */
-
-form label {
+label {
   display: block;
   margin-top: 12px;
   font-weight: bold;
   color: #333;
 }
 
-/* Input & select saja */
-form input,
-form select {
+input,
+textarea,
+select {
   width: 100%;
   padding: 10px;
   margin-top: 5px;
@@ -51,42 +45,10 @@ form select {
   font-size: 14px;
 }
 
-/* Dropdown kategori biru gradasi */
-form select {
-  background: linear-gradient(135deg, #1a73e8, #64b5f6);
-  color: #fff;
-  border: none;
-}
-
-form select option {
-  background: #ffffff;
-  color: #000;
-}
-
-/* ===== TEXTAREA DESKRIPSI (DIKEMBALIKAN) ===== */
-textarea.deskripsi {
-  width: 100%;
-  margin-top: 5px;
-  padding: 10px;
-
-  min-height: 90px;
+textarea {
   resize: vertical;
-
-  background: #f9fbff;
-  border: 1px solid #bcd3ff;
-  border-radius: 8px;
-
-  font-size: 14px;
-  color: #333;
+  min-height: 80px;
 }
-
-textarea.deskripsi:focus {
-  outline: none;
-  background: #ffffff;
-  border-color: #1a73e8;
-}
-
-/* ===== BUTTON ===== */
 
 button {
   margin-top: 20px;
