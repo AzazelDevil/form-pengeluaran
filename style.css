@@ -1,111 +1,67 @@
-/* === Tampilan Dasar Halaman === */
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
 body {
-  font-family: "Poppins", Arial, sans-serif;
-  background: linear-gradient(135deg, #d8ecff 0%, #ffffff 100%);
-  color: #222;
-  padding: 40px;
   margin: 0;
+  min-height: 100vh;
+  background: #1a73e8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-h2 {
+.container {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+h1 {
   text-align: center;
-  color: #004aad;
-  font-size: 26px;
-  font-weight: 600;
-  margin-bottom: 25px;
-}
-
-/* === Container Form === */
-form {
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 18px;
-  max-width: 500px;
-  margin: auto;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  color: #1a73e8;
 }
 
 label {
   display: block;
-  margin-top: 15px;
-  font-weight: 600;
-  font-size: 15px;
+  margin-top: 12px;
+  font-weight: bold;
   color: #333;
 }
 
-/* === Input, Select, Textarea === */
-input, select, textarea {
+input,
+select,
+textarea {
   width: 100%;
-  padding: 10px 12px;
-  margin-top: 6px;
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 6px;
   border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 15px;
-  color: #000; /* teks hitam agar jelas */
-  background-color: #fff;
-  box-sizing: border-box;
-  transition: all 0.25s ease-in-out;
 }
 
-input:focus, select:focus, textarea:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 6px rgba(0,123,255,0.4);
-  outline: none;
+textarea {
+  min-height: 80px;
+  resize: vertical;
 }
 
-/* === Dropdown kategori dengan warna biru gradasi === */
-select {
-  background: linear-gradient(90deg, #007bff 0%, #0056b3 100%);
-  color: #fff;
-  font-weight: 500;
-}
-
-select option {
-  background: #ffffff;
-  color: #000000;
-}
-
-/* === Input File === */
-input[type="file"] {
-  background: #f8f9fa;
-  border: 1px solid #ccc;
-  cursor: pointer;
-}
-
-/* === Tombol Kirim === */
 button {
   width: 100%;
-  background: linear-gradient(90deg, #007bff, #0056b3);
-  color: white;
+  margin-top: 20px;
   padding: 12px;
-  font-size: 16px;
-  font-weight: 600;
   border: none;
-  border-radius: 10px;
-  margin-top: 25px;
+  border-radius: 8px;
+  background: #1a73e8;
+  color: white;
+  font-size: 16px;
   cursor: pointer;
-  letter-spacing: 0.5px;
-  transition: background 0.3s ease;
 }
 
 button:hover {
-  background: linear-gradient(90deg, #0056b3, #004099);
-}
-
-/* === Pesan Status === */
-#status {
-  text-align: center;
-  margin-top: 18px;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-/* === Efek Responsif untuk Mobile === */
-@media (max-width: 600px) {
-  form {
-    padding: 20px;
-  }
-  h2 {
-    font-size: 22px;
-  }
+  background: #155ab6;
 }
