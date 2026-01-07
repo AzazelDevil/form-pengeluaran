@@ -1,60 +1,19 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // === GANTI DENGAN URL WEB APP GOOGLE SCRIPT MILIKMU ===
-  const scriptURL = "MASUKKAN_URL_WEB_APP_GOOGLE_SCRIPT_DI_SINI";
+const jumlahInput = document.getElementById("jumlah");
 
-  const form = document.getElementById("pengeluaranForm");
-  const fileInput = document.getElementById("bukti");
-  const status = document.getElementById("status");
+jumlahInput.addEventListener("input", function () {
+  let value = this.value.replace(/[^0-9]/g, "");
+  if (value === "") {
+    this.value = "";
+    return;
+  }
+  this.value = formatRupiah(value);
+});
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+function formatRupiah(angka) {
+  return angka.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
-    const file = fileInput.files[0];
-    status.textContent = "⏳ Mengirim data...";
-    status.style.color = "yellow";
-
-    let fileContent = "";
-    let fileName = "";
-    let mimeType = "";
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = async function () {
-        const base64 = reader.result.split(",")[1];
-        fileContent = base64;
-        fileName = file.name;
-        mimeType = file.type;
-        await kirimData();
-      };
-
-      reader.readAsDataURL(file);
-    } else {
-      await kirimData();
-    }
-
-    async function kirimData() {
-      const formData = new FormData(form);
-      formData.append("fileName", fileName);
-      formData.append("mimeType", mimeType);
-      formData.append("fileContent", fileContent);
-
-      try {
-        const res = await fetch(scriptURL, { method: "POST", body: formData });
-        const data = await res.json();
-
-        if (data.status === "success") {
-          status.textContent = "✅ Data dan file berhasil dikirim!";
-          status.style.color = "lime";
-          form.reset();
-        } else {
-          throw new Error(data.message || "Gagal menyimpan data.");
-        }
-      } catch (err) {
-        console.error("Error:", err);
-        status.textContent = "❌ Terjadi kesalahan: " + err.message;
-        status.style.color = "red";
-      }
-    }
-  });
+/* optional: bersihkan titik saat submit */
+document.getElementById("pengeluaranForm").addEventListener("submit", function () {
+  jumlahInput.value = jumlahInput.value.replace(/\./g, "");
 });
