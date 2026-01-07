@@ -1,60 +1,27 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // === GANTI DENGAN URL WEB APP GOOGLE SCRIPT MILIKMU ===
-  const scriptURL = "https://script.google.com/macros/s/AKfycbwAoZm8cGBZCh1inKDFGuqcF-ixkvvrHtqGOa260ruwsvRwSGMtgZeJ1_rK2ZrY2moyKw/exec";
+const form = document.getElementById("pengeluaranForm");
+const statusText = document.getElementById("status");
 
-  const form = document.getElementById("pengeluaranForm");
-  const fileInput = document.getElementById("bukti");
-  const status = document.getElementById("status");
+// GANTI dengan URL Web App Google Apps Script kamu
+const SCRIPT_URL = "PASTE_URL_WEB_APP_DI_SINI";
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
 
-    const file = fileInput.files[0];
-    status.textContent = "⏳ Mengirim data...";
-    status.style.color = "yellow";
+  const formData = new FormData(form);
 
-    let fileContent = "";
-    let fileName = "";
-    let mimeType = "";
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = async function () {
-        const base64 = reader.result.split(",")[1];
-        fileContent = base64;
-        fileName = file.name;
-        mimeType = file.type;
-        await kirimData();
-      };
-
-      reader.readAsDataURL(file);
-    } else {
-      await kirimData();
-    }
-
-    async function kirimData() {
-      const formData = new FormData(form);
-      formData.append("fileName", fileName);
-      formData.append("mimeType", mimeType);
-      formData.append("fileContent", fileContent);
-
-      try {
-        const res = await fetch(scriptURL, { method: "POST", body: formData });
-        const data = await res.json();
-
-        if (data.status === "success") {
-          status.textContent = "✅ Data dan file berhasil dikirim!";
-          status.style.color = "lime";
-          form.reset();
-        } else {
-          throw new Error(data.message || "Gagal menyimpan data.");
-        }
-      } catch (err) {
-        console.error("Error:", err);
-        status.textContent = "❌ Terjadi kesalahan: " + err.message;
-        status.style.color = "red";
-      }
-    }
-  });
+  fetch(SCRIPT_URL, {
+    method: "POST",
+    body: formData
+  })
+    .then(res => res.text())
+    .then(result => {
+      statusText.textContent = "Data berhasil disimpan";
+      statusText.style.color = "green";
+      form.reset();
+    })
+    .catch(err => {
+      statusText.textContent = "Gagal mengirim data";
+      statusText.style.color = "red";
+      console.error(err);
+    });
 });
