@@ -51,7 +51,7 @@ form select {
   font-size: 14px;
 }
 
-/* dropdown kategori biru gradasi */
+/* Dropdown kategori biru gradasi */
 form select {
   background: linear-gradient(135deg, #1a73e8, #64b5f6);
   color: #fff;
