@@ -4,7 +4,7 @@ const statusText = document.getElementById("status");
 const jumlahDisplay = document.getElementById("jumlahDisplay");
 const jumlahHidden = document.getElementById("jumlah");
 
-// GANTI dengan URL Web App Google Apps Script kamu
+// GANTI dengan URL Web App Google Apps Script
 const SCRIPT_URL = "PASTE_URL_WEB_APP_DI_SINI";
 
 /* === AUTO FORMAT RUPIAH === */
