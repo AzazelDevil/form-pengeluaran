@@ -1,37 +1,210 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Form Pengeluaran Harian</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* === Tampilan Dasar Halaman === */
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: linear-gradient(135deg, #d8ecff 0%, #ffffff 100%);
+      color: #222;
+      padding: 40px;
+      margin: 0;
+    }
+
+    h2 {
+      text-align: center;
+      color: #004aad;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 25px;
+    }
+
+    /* === Container Form === */
+    form {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 18px;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+      font-size: 15px;
+      color: #333;
+    }
+
+    /* === Input, Select, Textarea === */
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 15px;
+      color: #000; /* teks hitam agar jelas */
+      background-color: #fff;
+      box-sizing: border-box;
+      transition: all 0.25s ease-in-out;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 6px rgba(0,123,255,0.4);
+      outline: none;
+    }
+
+    /* === Dropdown kategori dengan warna biru gradasi === */
+    select {
+      background: linear-gradient(90deg, #007bff 0%, #0056b3 100%);
+      color: #fff;
+      font-weight: 500;
+    }
+
+    select option {
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /* === Input File === */
+    input[type="file"] {
+      background: #f8f9fa;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    /* === Tombol Kirim === */
+    button {
+      width: 100%;
+      background: linear-gradient(90deg, #007bff, #0056b3);
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      margin-top: 25px;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #0056b3, #004099);
+    }
+
+    /* === Pesan Status === */
+    #status {
+      text-align: center;
+      margin-top: 18px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* === Efek Responsif untuk Mobile === */
+    @media (max-width: 600px) {
+      form {
+        padding: 20px;
+      }
+      h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Form Pengeluaran Harian</h1>
-    <form id="pengeluaranForm">
-      <label for="tanggal">Tanggal:</label>
-      <input type="date" id="tanggal" name="tanggal" required />
-      <label for="kategori">Kategori:</label>
-      <select id="kategori" name="kategori" required>
-        <option value="">Pilih Kategori</option>
-        <option value="Transportasi">Transportasi</option>
-        <option value="Makanan">Makanan</option>
-        <option value="Belanja">Belanja</option>
-        <option value="Lainnya">Lainnya</option>
-      </select>
-      <label for="deskripsi">Deskripsi:</label>
-      <textarea id="deskripsi" name="deskripsi" placeholder="Masukkan deskripsi..." required></textarea>
-      <label for="jumlah">Jumlah (Rp):</label>
-      <input type="number" id="jumlah" name="jumlah" required />
-      <label for="bukti">Upload Bukti (opsional):</label>
-      <input type="file" id="bukti" name="file" accept="image/*,application/pdf" />
-      <button type="submit">Kirim</button>
-      <p id="status"></p>
-    </form>
-  </div>
 
-  <!-- Pemanggilan JS -->
-  <script src="script.js"></script>
+  <h2>Form Pengeluaran Harian</h2>
+
+  <form id="pengeluaranForm">
+    <label for="tanggal">Tanggal:</label>
+    <input type="date" id="tanggal" name="tanggal" required>
+
+    <label for="kategori">Kategori:</label>
+    <select id="kategori" name="kategori" required>
+      <option value="">Pilih kategori</option>
+      <option value="Transportasi">Transportasi</option>
+      <option value="Makanan">Makanan</option>
+      <option value="Belanja">Belanja</option>
+      <option value="Lainnya">Lainnya</option>
+    </select>
+
+    <label for="deskripsi">Deskripsi:</label>
+    <textarea id="deskripsi" name="deskripsi" rows="3" placeholder="Tulis deskripsi pengeluaran..." required></textarea>
+
+    <label for="jumlah">Jumlah (Rp):</label>
+    <input type="number" id="jumlah" name="jumlah" placeholder="Masukkan jumlah pengeluaran" required>
+
+    <label for="file">Bukti (opsional):</label>
+    <input type="file" id="file" name="file" accept="image/*,application/pdf">
+
+    <button type="submit">Kirim</button>
+  </form>
+
+  <p id="status"></p>
+
+  <script>
+    const scriptURL = "MASUKKAN_URL_WEB_APP_DI_SINI"; // Ganti dengan URL Web App kamu
+
+    document.getElementById("pengeluaranForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const fileInput = document.getElementById("file");
+      const file = fileInput.files[0];
+      const status = document.getElementById("status");
+      status.style.color = "#333";
+      status.innerText = "Mengirim data...";
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+          const base64 = reader.result.split(",")[1];
+          await kirimData(base64, file.name, file.type);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        await kirimData("", "", "");
+      }
+
+      async function kirimData(fileContent, fileName, mimeType) {
+        const data = {
+          tanggal: form.tanggal.value,
+          kategori: form.kategori.value,
+          deskripsi: form.deskripsi.value,
+          jumlah: form.jumlah.value,
+          fileContent,
+          fileName,
+          mimeType
+        };
+
+        try {
+          const res = await fetch(scriptURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+          });
+          const result = await res.json();
+
+          if (result.status === "success") {
+            status.style.color = "green";
+            status.innerText = "✅ Data dan file berhasil dikirim!";
+            form.reset();
+          } else {
+            status.style.color = "orange";
+            status.innerText = "⚠️ Gagal: " + result.message;
+          }
+        } catch (err) {
+          status.style.color = "red";
+          status.innerText = "❌ Error: " + err.message;
+        }
+      }
+    });
+  </script>
+
 </body>
 </html>
