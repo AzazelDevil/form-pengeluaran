@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form Pengeluaran Harian</title>
 
+  <!-- Favicon -->
   <link rel="icon" type="image/png"
         href="https://cdn-icons-png.flaticon.com/512/3314/3314008.png">
 
@@ -33,7 +34,11 @@
       </select>
 
       <label>Deskripsi (opsional)</label>
-      <textarea name="deskripsi" placeholder="Boleh dikosongkan"></textarea>
+      <textarea
+        name="deskripsi"
+        class="deskripsi"
+        placeholder="Catatan tambahan, boleh dikosongkan">
+      </textarea>
 
       <label>Jumlah (Rp)</label>
       <input type="text" id="jumlahDisplay" placeholder="Rp 0" required>
