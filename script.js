@@ -1,27 +1,45 @@
-// Auto-format Rupiah pada input jumlah
+const form = document.getElementById("pengeluaranForm");
 const jumlahInput = document.getElementById("jumlah");
 
+/* ===============================
+   AUTO FORMAT RUPIAH
+================================ */
 jumlahInput.addEventListener("input", function () {
-  // Ambil hanya angka
   let angka = this.value.replace(/[^0-9]/g, "");
-
   if (angka === "") {
     this.value = "";
     return;
   }
-
-  // Format menjadi Rupiah (1.000.000)
   this.value = formatRupiah(angka);
 });
 
-// Fungsi format Rupiah
 function formatRupiah(angka) {
   return angka.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-// Saat form disubmit, hapus titik agar tersimpan sebagai angka murni
-document
-  .getElementById("pengeluaranForm")
-  .addEventListener("submit", function () {
-    jumlahInput.value = jumlahInput.value.replace(/\./g, "");
-  });
+/* ===============================
+   SUBMIT + NOTIFIKASI
+================================ */
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // Bersihkan format rupiah sebelum kirim
+  const cleanJumlah = jumlahInput.value.replace(/\./g, "");
+  jumlahInput.value = cleanJumlah;
+
+  const formData = new FormData(form);
+
+  fetch("PASTE_URL_WEB_APP_SCRIPT_DI_SINI", {
+    method: "POST",
+    body: formData
+  })
+    .then(res => res.text())
+    .then(result => {
+      alert("✅ Data berhasil disimpan");
+      form.reset();
+    })
+    .catch(err => {
+      alert("❌ Gagal menyimpan data");
+      console.error(err);
+    });
+});
