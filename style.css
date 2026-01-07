@@ -1,123 +1,54 @@
-* {
-  box-sizing: border-box;
-  font-family: "Segoe UI", Roboto, Arial, sans-serif;
-}
+document.addEventListener("DOMContentLoaded", function () {
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(255, 255, 255, 0.05),
-      transparent 45%
-    ),
-    linear-gradient(135deg, #062b8c, #00b7ff);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  const form = document.getElementById("pengeluaranForm");
+  const jumlahInput = document.getElementById("jumlah");
 
-/* ==== CONTAINER ==== */
-.container {
-  position: relative;
-  background: #ffffff;
-  width: 100%;
-  max-width: 440px;
-  padding: 30px 26px;
-  border-radius: 18px;
-  z-index: 1;
-}
+  if (!form || !jumlahInput) {
+    console.error("Form atau input jumlah tidak ditemukan");
+    return;
+  }
 
-/* ==== NEON GLOW BIRU ==== */
-.container::before {
-  content: "";
-  position: absolute;
-  inset: -8px;
-  border-radius: 22px;
-  background: linear-gradient(135deg, #00b7ff, #0a3cff);
-  filter: blur(22px);
-  opacity: 0.7;
-  z-index: -1;
-}
+  /* ===============================
+     AUTO FORMAT RUPIAH
+  ================================ */
+  jumlahInput.addEventListener("input", function () {
+    let angka = this.value.replace(/[^0-9]/g, "");
+    if (angka === "") {
+      this.value = "";
+      return;
+    }
+    this.value = formatRupiah(angka);
+  });
 
-/* ==== TITLE ==== */
-h1 {
-  margin: 0 0 24px;
-  text-align: center;
-  font-size: 22px;
-  font-weight: 700;
-  color: #0a3cff;
-  text-shadow:
-    0 0 6px rgba(0, 183, 255, 0.8),
-    0 0 14px rgba(0, 183, 255, 0.6);
-}
+  function formatRupiah(angka) {
+    return angka.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
 
-/* ==== FORM ==== */
-label {
-  display: block;
-  margin-top: 14px;
-  margin-bottom: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  color: #1f2937;
-}
+  /* ===============================
+     SUBMIT + NOTIFIKASI
+  ================================ */
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-input,
-select,
-textarea {
-  width: 100%;
-  padding: 12px;
-  font-size: 14px;
-  border-radius: 10px;
-  border: 1px solid #bcdcff;
-  background: #ffffff;
-  transition: box-shadow 0.2s, border-color 0.2s;
-}
+    // Bersihkan format Rupiah
+    const cleanJumlah = jumlahInput.value.replace(/\./g, "");
+    jumlahInput.value = cleanJumlah;
 
-input:focus,
-select:focus,
-textarea:focus {
-  outline: none;
-  border-color: #00b7ff;
-  box-shadow:
-    0 0 0 3px rgba(0, 183, 255, 0.3),
-    0 0 16px rgba(0, 183, 255, 0.7);
-}
+    const formData = new FormData(form);
 
-textarea {
-  min-height: 80px;
-  resize: vertical;
-}
+    fetch("PASTE_URL_WEB_APP_SCRIPT_DI_SINI", {
+      method: "POST",
+      body: formData
+    })
+      .then(res => res.text())
+      .then(result => {
+        alert("✅ Data berhasil dikirim");
+        form.reset();
+      })
+      .catch(error => {
+        console.error(error);
+        alert("❌ Gagal mengirim data");
+      });
+  });
 
-/* ==== BUTTON ==== */
-button {
-  width: 100%;
-  margin-top: 24px;
-  padding: 14px;
-  border: none;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #0a3cff, #00b7ff);
-  color: #ffffff;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow:
-    0 0 16px rgba(0, 183, 255, 0.75),
-    0 0 30px rgba(10, 60, 255, 0.65);
-  transition: transform 0.15s, box-shadow 0.15s;
-}
-
-button:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 0 24px rgba(0, 183, 255, 0.9),
-    0 0 40px rgba(10, 60, 255, 0.8);
-}
-
-button:active {
-  transform: translateY(0);
-  box-shadow:
-    0 0 14px rgba(0, 183, 255, 0.7),
-    0 0 26px rgba(10, 60, 255, 0.6);
-}
+});
