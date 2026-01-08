@@ -56,7 +56,7 @@ form.addEventListener("submit", function (e) {
 // KIRIM KE APPS SCRIPT
 // ===============================
 function kirimData(data) {
-  fetch("https://script.google.com/macros/s/AKfycbzN_9k_j1VgogG-bK8P-RSex8e87P2jTLk0mxp-o7aJHTOn8bdAzqvJAddSSDwoVuKdoQ/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbxWIR7x-36zqJZoplGYcKphPJS0KAN6SIdHf0toehQDjBMd8QW83zpkbl09r0vsWU71Zw/exec", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
