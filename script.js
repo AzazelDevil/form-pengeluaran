@@ -2,7 +2,7 @@
 // KONFIGURASI
 // ===============================
 const WEB_APP_URL =
-  "https://script.google.com/macros/s/AKfycbwnNRspSZVzbyDpKpBAU4lHWdqU1PCJdjFJNKTLvlMByJk8XDZebRFbjdJgts3UnUVXuQ/exec";
+  "https://script.google.com/macros/s/AKfycbzBWquYDEu2bqN62Lk-Jjop6lSSbMpJp4kzq9se0VqnuROx9LH_McnbdY8POG55FUCxPw/exec";
 
 // ===============================
 // AUTO FORMAT RUPIAH
