@@ -29,7 +29,7 @@ form.addEventListener("submit", function (e) {
 
   const formData = new FormData(form);
 
-  fetch("https://script.google.com/macros/s/AKfycbwQYFFwWj3d4mTeXHtuD15Q0M1L0W2vGW7Vc43ZOSJF4KRqfwwV9OFMYta3vDRtAkMW3A/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbwo6ELvhHKLIniJKrRmBOC2fVHQwnZW9I-sSf5eZEDGb9a757oT9nAbjRJ86UtnewEyjw/exec", {
     method: "POST",
     body: formData
   })
