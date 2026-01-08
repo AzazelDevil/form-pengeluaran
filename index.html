@@ -16,7 +16,7 @@
   <div class="container">
     <h1>Form Pengeluaran Harian</h1>
 
-    <form id="form-pengeluaran">
+    <form id="form-pengeluaran" enctype="multipart/form-data">
       <!-- TANGGAL -->
       <div class="form-group">
         <label for="tanggal">Tanggal</label>
@@ -63,6 +63,17 @@
           name="jumlah"
           placeholder="Contoh: 50.000"
           required
+        />
+      </div>
+
+      <!-- UPLOAD FILE -->
+      <div class="form-group">
+        <label for="bukti">Upload Bukti (opsional)</label>
+        <input
+          type="file"
+          id="bukti"
+          name="bukti"
+          accept="image/*,application/pdf"
         />
       </div>
 
