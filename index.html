@@ -2,61 +2,60 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Form Pengeluaran Harian</title>
 
-  <!-- Icon -->
-  <link rel="icon" type="image/png" href="icon.png">
+  <!-- ICON WEBSITE -->
+  <link rel="icon" type="image/png" href="icon.png" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <div class="container">
-    <h1>💸 Pengeluaran Harian</h1>
+    <h1>
+      <span class="icon">💸</span>
+      Pengeluaran Harian
+    </h1>
 
-    <form
-      id="pengeluaranForm"
-      action="https://script.google.com/macros/s/AKfycbx72ucwTD8i5zaiK9ripi7QAmYuFyGz5Soumxv8IHzb_n38ihcpCH5qc3-fzlOxIAhSoQ/exec"
-      method="post"
-      enctype="multipart/form-data"
-    >
-      <label>Tanggal</label>
-      <input type="date" name="tanggal" required>
+    <form id="pengeluaranForm">
 
-      <label>Kategori</label>
-      <select name="kategori" required>
-        <option value="">Pilih Kategori</option>
-        <option>Makan</option>
-        <option>Transport</option>
-        <option>Belanja</option>
-        <option>Lainnya</option>
+      <label for="tanggal">Tanggal</label>
+      <input type="date" id="tanggal" required />
+
+      <label for="kategori">Kategori</label>
+      <select id="kategori" required>
+        <option value="">-- Pilih Kategori --</option>
+        <option value="Makan">Makan</option>
+        <option value="Transport">Transport</option>
+        <option value="Belanja">Belanja</option>
+        <option value="Lainnya">Lainnya</option>
       </select>
 
-      <label>Deskripsi (opsional)</label>
-      <textarea name="deskripsi" placeholder="Tidak wajib diisi"></textarea>
+      <label for="deskripsi">Deskripsi (opsional)</label>
+      <textarea
+        id="deskripsi"
+        placeholder="Keterangan tambahan (boleh kosong)"
+      ></textarea>
 
-      <label>Jumlah (Rp)</label>
-      <input type="text" id="jumlah" name="jumlah" required placeholder="Contoh: 25.000">
+      <label for="jumlah">Jumlah (Rp)</label>
+      <input
+        type="text"
+        id="jumlah"
+        placeholder="Contoh: 25.000"
+        required
+      />
 
-      <label>Bukti (opsional)</label>
-      <input type="file" name="file">
+      <label for="bukti">Upload Bukti (opsional)</label>
+      <input type="file" id="bukti" accept="image/*,application/pdf" />
 
-      <button type="submit">Simpan</button>
+      <button type="submit">Simpan Data</button>
+
     </form>
   </div>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="toast">Data berhasil terkirim</div>
-
-  <!-- JavaScript -->
+  <!-- JAVASCRIPT -->
   <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
