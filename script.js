@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const WEB_APP_URL =
-    "https://script.google.com/macros/s/AKfycbwo6ELvhHKLIniJKrRmBOC2fVHQwnZW9I-sSf5eZEDGb9a757oT9nAbjRJ86UtnewEyjw/exec";
+    "https://script.google.com/macros/s/AKfycbyE4tHq8Fxesxn0qlOMuZ0TP8BGJEPubsquxenPQtiG7nUhKsmCHB-xB80C4rhuvdOcUw/execc";
 
   const form = document.getElementById("pengeluaranForm");
   const jumlahInput = document.getElementById("jumlah");
