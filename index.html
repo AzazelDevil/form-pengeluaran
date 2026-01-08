@@ -1,28 +1,32 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
   <title>Form Pengeluaran Harian</title>
 
   <!-- Icon -->
-  <link rel="icon" type="image/png"
-        href="https://cdn-icons-png.flaticon.com/512/3314/3314008.png">
+  <link rel="icon" type="image/png" href="icon.png">
 
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <div class="container">
-    <h1>Form Pengeluaran</h1>
+    <h1>💸 Pengeluaran Harian</h1>
 
-    <form id="pengeluaranForm" method="POST">
+    <form
+      id="pengeluaranForm"
+      action="PASTE_URL_WEB_APP_APPS_SCRIPT_DI_SINI"
+      method="post"
+      enctype="multipart/form-data"
+    >
       <label>Tanggal</label>
       <input type="date" name="tanggal" required>
 
       <label>Kategori</label>
       <select name="kategori" required>
-        <option value="">Pilih kategori</option>
+        <option value="">Pilih Kategori</option>
         <option>Makan</option>
         <option>Transport</option>
         <option>Belanja</option>
@@ -30,18 +34,22 @@
       </select>
 
       <label>Deskripsi (opsional)</label>
-      <textarea name="deskripsi" placeholder="Boleh dikosongkan"></textarea>
+      <textarea name="deskripsi" placeholder="Tidak wajib diisi"></textarea>
 
       <label>Jumlah (Rp)</label>
-      <input type="text" id="jumlah" name="jumlah" placeholder="0" required>
+      <input type="text" id="jumlah" name="jumlah" required placeholder="Contoh: 25.000">
 
       <label>Bukti (opsional)</label>
-      <input type="file" name="bukti">
+      <input type="file" name="file">
 
       <button type="submit">Simpan</button>
     </form>
   </div>
 
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">Data berhasil terkirim</div>
+
+  <!-- JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
