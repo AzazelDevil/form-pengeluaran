@@ -1,46 +1,57 @@
-const form = document.getElementById("pengeluaranForm");
-const jumlahInput = document.getElementById("jumlah");
-const fileInput = document.getElementById("bukti");
+// ===============================
+// KONFIGURASI
+// ===============================
+const WEB_APP_URL =
+  "https://script.google.com/macros/s/AKfycbwnNRspSZVzbyDpKpBAU4lHWdqU1PCJdjFJNKTLvlMByJk8XDZebRFbjdJgts3UnUVXuQ/exec";
 
-// Auto-format Rupiah
-jumlahInput.addEventListener("input", () => {
-  let angka = jumlahInput.value.replace(/[^0-9]/g, "");
-  jumlahInput.value = angka ? angka.replace(/\B(?=(\d{3})+(?!\d))/g, ".") : "";
+// ===============================
+// AUTO FORMAT RUPIAH
+// ===============================
+const jumlahInput = document.getElementById("jumlah");
+
+jumlahInput.addEventListener("input", function () {
+  let angka = this.value.replace(/[^0-9]/g, "");
+
+  if (angka === "") {
+    this.value = "";
+    return;
+  }
+
+  this.value = formatRupiah(angka);
 });
 
-form.addEventListener("submit", e => {
+function formatRupiah(angka) {
+  return angka.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+// ===============================
+// SUBMIT FORM
+// ===============================
+const form = document.getElementById("form-pengeluaran");
+
+form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const data = {
-    tanggal: tanggal.value,
-    kategori: kategori.value,
-    deskripsi: deskripsi.value || "",
-    jumlah: jumlahInput.value.replace(/\./g, "")
-  };
+  // Hapus format rupiah sebelum dikirim
+  jumlahInput.value = jumlahInput.value.replace(/\./g, "");
 
-  const file = fileInput.files[0];
+  const formData = new FormData(form);
 
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      data.fileName = file.name;
-      data.fileType = file.type;
-      data.fileBase64 = reader.result.split(",")[1];
-      kirim(data);
-    };
-    reader.readAsDataURL(file);
-  } else {
-    kirim(data);
-  }
-});
-
-function kirim(data) {
-  fetch("https://script.google.com/macros/s/AKfycbzOdJkelb6FNczQd1l2-U-FSgU4N1Mir3SbZhHec7BsRH9e3PMs5Anb0w6zwio1zKikng/exec", {
+  fetch(WEB_APP_URL, {
     method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(data)
-  });
-
-  alert("Data berhasil dikirim");
-  form.reset();
-}
+    body: formData
+  })
+    .then((response) => response.text())
+    .then((text) => {
+      if (text === "OK") {
+        alert("Data berhasil dikirim");
+        form.reset();
+      } else {
+        alert("Terjadi kesalahan: " + text);
+      }
+    })
+    .catch((error) => {
+      console.error(error);
+      alert("Gagal mengirim data");
+    });
+});
