@@ -1,45 +1,54 @@
-const form = document.getElementById("pengeluaranForm");
-const jumlahInput = document.getElementById("jumlah");
+document.addEventListener("DOMContentLoaded", function () {
+  const WEB_APP_URL =
+    "https://script.google.com/macros/s/AKfycbwo6ELvhHKLIniJKrRmBOC2fVHQwnZW9I-sSf5eZEDGb9a757oT9nAbjRJ86UtnewEyjw/exec";
 
-/* ===============================
-   AUTO FORMAT RUPIAH
-================================ */
-jumlahInput.addEventListener("input", function () {
-  let angka = this.value.replace(/[^0-9]/g, "");
-  if (angka === "") {
-    this.value = "";
+  const form = document.getElementById("pengeluaranForm");
+  const jumlahInput = document.getElementById("jumlah");
+
+  if (!form || !jumlahInput) {
+    console.error("Form atau input jumlah tidak ditemukan");
     return;
   }
-  this.value = formatRupiah(angka);
-});
 
-function formatRupiah(angka) {
-  return angka.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
+  // ===============================
+  // AUTO FORMAT RUPIAH
+  // ===============================
+  jumlahInput.addEventListener("input", function () {
+    let angka = this.value.replace(/[^0-9]/g, "");
+    if (angka === "") {
+      this.value = "";
+      return;
+    }
+    this.value = angka.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  });
 
-/* ===============================
-   SUBMIT + NOTIFIKASI
-================================ */
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+  // ===============================
+  // SUBMIT FORM
+  // ===============================
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  // Bersihkan format rupiah sebelum kirim
-  const cleanJumlah = jumlahInput.value.replace(/\./g, "");
-  jumlahInput.value = cleanJumlah;
+    // pastikan nilai jumlah dikirim sebagai angka
+    jumlahInput.value = jumlahInput.value.replace(/\./g, "");
 
-  const formData = new FormData(form);
+    const formData = new FormData(form);
 
-  fetch("https://script.google.com/macros/s/AKfycbwo6ELvhHKLIniJKrRmBOC2fVHQwnZW9I-sSf5eZEDGb9a757oT9nAbjRJ86UtnewEyjw/exec", {
-    method: "POST",
-    body: formData
-  })
-    .then(res => res.text())
-    .then(result => {
-      alert("✅ Data berhasil disimpan");
-      form.reset();
+    fetch(WEB_APP_URL, {
+      method: "POST",
+      body: formData
     })
-    .catch(err => {
-      alert("❌ Gagal menyimpan data");
-      console.error(err);
-    });
+      .then((res) => res.text())
+      .then((text) => {
+        if (text.trim() === "OK") {
+          alert("Data berhasil dikirim");
+          form.reset();
+        } else {
+          alert("Gagal mengirim data: " + text);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Terjadi kesalahan saat mengirim data");
+      });
+  });
 });
