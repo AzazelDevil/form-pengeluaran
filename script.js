@@ -35,7 +35,7 @@ form.addEventListener("submit", e => {
 });
 
 function kirim(data) {
-  fetch("https://script.google.com/macros/s/AKfycbzN_9k_j1VgogG-bK8P-RSex8e87P2jTLk0mxp-o7aJHTOn8bdAzqvJAddSSDwoVuKdoQ/exec", {
+  fetch("https://script.google.com/macros/s/AKfycbzOdJkelb6FNczQd1l2-U-FSgU4N1Mir3SbZhHec7BsRH9e3PMs5Anb0w6zwio1zKikng/exec", {
     method: "POST",
     mode: "no-cors",
     body: JSON.stringify(data)
