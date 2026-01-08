@@ -1,22 +1,15 @@
-// ===============================
-// KONFIGURASI
-// ===============================
-const WEB_APP_URL =
-  "https://script.google.com/macros/s/AKfycbzBWquYDEu2bqN62Lk-Jjop6lSSbMpJp4kzq9se0VqnuROx9LH_McnbdY8POG55FUCxPw/exec";
-
-// ===============================
-// AUTO FORMAT RUPIAH
-// ===============================
+const form = document.getElementById("pengeluaranForm");
 const jumlahInput = document.getElementById("jumlah");
 
+/* ===============================
+   AUTO FORMAT RUPIAH
+================================ */
 jumlahInput.addEventListener("input", function () {
   let angka = this.value.replace(/[^0-9]/g, "");
-
   if (angka === "") {
     this.value = "";
     return;
   }
-
   this.value = formatRupiah(angka);
 });
 
@@ -24,34 +17,29 @@ function formatRupiah(angka) {
   return angka.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
 
-// ===============================
-// SUBMIT FORM
-// ===============================
-const form = document.getElementById("pengeluaranForm");
-
+/* ===============================
+   SUBMIT + NOTIFIKASI
+================================ */
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  // Hapus format rupiah sebelum dikirim
-  jumlahInput.value = jumlahInput.value.replace(/\./g, "");
+  // Bersihkan format rupiah sebelum kirim
+  const cleanJumlah = jumlahInput.value.replace(/\./g, "");
+  jumlahInput.value = cleanJumlah;
 
   const formData = new FormData(form);
 
-  fetch(WEB_APP_URL, {
+  fetch("https://script.google.com/macros/s/AKfycbwQYFFwWj3d4mTeXHtuD15Q0M1L0W2vGW7Vc43ZOSJF4KRqfwwV9OFMYta3vDRtAkMW3A/exec", {
     method: "POST",
     body: formData
   })
-    .then((response) => response.text())
-    .then((text) => {
-      if (text === "OK") {
-        alert("Data berhasil dikirim");
-        form.reset();
-      } else {
-        alert("Terjadi kesalahan: " + text);
-      }
+    .then(res => res.text())
+    .then(result => {
+      alert("✅ Data berhasil disimpan");
+      form.reset();
     })
-    .catch((error) => {
-      console.error(error);
-      alert("Gagal mengirim data");
+    .catch(err => {
+      alert("❌ Gagal menyimpan data");
+      console.error(err);
     });
 });
