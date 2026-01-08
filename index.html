@@ -5,53 +5,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Form Pengeluaran Harian</title>
 
-  <!-- ICON WEBSITE -->
+  <!-- Icon -->
   <link rel="icon" type="image/png" href="icon.png" />
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-
   <div class="container">
-    <h1>
-      <span class="icon">💸</span>
-      Pengeluaran Harian
-    </h1>
+    <h1>Form Pengeluaran Harian</h1>
 
-    <form id="pengeluaranForm">
+    <form id="form-pengeluaran">
+      <!-- TANGGAL -->
+      <div class="form-group">
+        <label for="tanggal">Tanggal</label>
+        <input
+          type="date"
+          id="tanggal"
+          name="tanggal"
+          required
+        />
+      </div>
 
-      <label for="tanggal">Tanggal</label>
-      <input type="date" id="tanggal" required />
+      <!-- KATEGORI -->
+      <div class="form-group">
+        <label for="kategori">Kategori</label>
+        <select
+          id="kategori"
+          name="kategori"
+          required
+        >
+          <option value="">Pilih kategori</option>
+          <option value="Makanan">Makanan</option>
+          <option value="Transportasi">Transportasi</option>
+          <option value="Belanja">Belanja</option>
+          <option value="Lainnya">Lainnya</option>
+        </select>
+      </div>
 
-      <label for="kategori">Kategori</label>
-      <select id="kategori" required>
-        <option value="">-- Pilih Kategori --</option>
-        <option value="Makan">Makan</option>
-        <option value="Transport">Transport</option>
-        <option value="Belanja">Belanja</option>
-        <option value="Lainnya">Lainnya</option>
-      </select>
+      <!-- DESKRIPSI (OPSIONAL) -->
+      <div class="form-group">
+        <label for="deskripsi">Deskripsi (opsional)</label>
+        <textarea
+          id="deskripsi"
+          name="deskripsi"
+          placeholder="Contoh: makan siang"
+        ></textarea>
+      </div>
 
-      <label for="deskripsi">Deskripsi (opsional)</label>
-      <textarea
-        id="deskripsi"
-        placeholder="Keterangan tambahan (boleh kosong)"
-      ></textarea>
+      <!-- JUMLAH -->
+      <div class="form-group">
+        <label for="jumlah">Jumlah (Rp)</label>
+        <input
+          type="text"
+          id="jumlah"
+          name="jumlah"
+          placeholder="Contoh: 50.000"
+          required
+        />
+      </div>
 
-      <label for="jumlah">Jumlah (Rp)</label>
-      <input
-        type="text"
-        id="jumlah" name="jumlah"
-        placeholder="Contoh: 25.000"
-        required
-      />
-
-      <label for="bukti">Upload Bukti (opsional)</label>
-      <input type="file" id="bukti" accept="image/*,application/pdf" />
-
-      <button type="submit">Simpan Data</button>
-
+      <!-- SUBMIT -->
+      <button type="submit">Simpan</button>
     </form>
   </div>
 
@@ -59,4 +75,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
