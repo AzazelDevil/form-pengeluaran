@@ -27,7 +27,7 @@ function formatRupiah(angka) {
 // ===============================
 // SUBMIT FORM
 // ===============================
-const form = document.getElementById("form-pengeluaran");
+const form = document.getElementById("pengeluaranForm");
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
