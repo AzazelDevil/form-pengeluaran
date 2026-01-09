@@ -1,54 +1,57 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const WEB_APP_URL =
-    "https://script.google.com/macros/s/AKfycbyiqM-NUouWuxxqMe6GU71KmANy45UTGtGySiIOH34xiv78_BYXvX-kGaTFrvTMUGF3sQ/exec";
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwhzzPpWHjn1Ca81WzZSEUaG3fFfEojvTvBm4OPdXIK28_i20lcY5e1PLv3dbATPk58Rg/exec";
 
-  const form = document.getElementById("pengeluaranForm");
-  const jumlahInput = document.getElementById("jumlah");
+document.getElementById("pengeluaranForm").addEventListener("submit", function (e) {
+  e.preventDefault();
 
-  if (!form || !jumlahInput) {
-    console.error("Form atau input jumlah tidak ditemukan");
-    return;
+  const form = e.target;
+  const fileInput = document.getElementById("file");
+
+  const data = {
+    tanggal: form.tanggal.value,
+    kategori: form.kategori.value,
+    deskripsi: form.deskripsi.value || "",
+    jumlah: form.jumlah.value.replace(/\D/g, "")
+  };
+
+  if (fileInput && fileInput.files.length > 0) {
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = function () {
+      const base64 = reader.result.split(",")[1];
+
+      data.file = base64;
+      data.filename = file.name;
+      data.mimeType = file.type;
+
+      sendData(data);
+    };
+
+    reader.readAsDataURL(file);
+  } else {
+    sendData(data);
   }
-
-  // ===============================
-  // AUTO FORMAT RUPIAH
-  // ===============================
-  jumlahInput.addEventListener("input", function () {
-    let angka = this.value.replace(/[^0-9]/g, "");
-    if (angka === "") {
-      this.value = "";
-      return;
-    }
-    this.value = angka.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  });
-
-  // ===============================
-  // SUBMIT FORM
-  // ===============================
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    // pastikan nilai jumlah dikirim sebagai angka
-    jumlahInput.value = jumlahInput.value.replace(/\./g, "");
-
-    const formData = new FormData(form);
-
-    fetch(WEB_APP_URL, {
-      method: "POST",
-      body: formData
-    })
-      .then((res) => res.text())
-      .then((text) => {
-        if (text.trim() === "OK") {
-          alert("Data berhasil dikirim");
-          form.reset();
-        } else {
-          alert("Gagal mengirim data: " + text);
-        }
-      })
-      .catch((err) => {
-        console.error(err);
-        alert("Terjadi kesalahan saat mengirim data");
-      });
-  });
 });
+
+function sendData(data) {
+  fetch(WEB_APP_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded"
+    },
+    body: new URLSearchParams(data)
+  })
+    .then(res => res.json())
+    .then(result => {
+      if (result.status === "success") {
+        alert("Data berhasil dikirim");
+        document.getElementById("pengeluaranForm").reset();
+      } else {
+        alert("Gagal mengirim data: " + result.message);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Terjadi kesalahan saat mengirim data");
+    });
+}
