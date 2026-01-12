@@ -1,5 +1,5 @@
 const WEB_APP_URL =
-  "https://script.google.com/macros/s/AKfycbxBO5h_DHVJQNSMSiBQbNbb43I6nxxOaV6R5E0tDu8w5XNqjluMpQVmi9kKg3wxb1n8IA/exec";
+  "https://script.google.com/macros/s/AKfycbx-8jAkIzXbUIPR_6edfmJb-rBTcm-F61ua237eAkleSzvTAhgfVvxWEVMQ79YuUG6NkQ/exec";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("pengeluaranForm");
