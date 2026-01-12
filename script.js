@@ -1,45 +1,61 @@
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxBO5h_DHVJQNSMSiBQbNbb43I6nxxOaV6R5E0tDu8w5XNqjluMpQVmi9kKg3wxb1n8IA/exec";
+const WEB_APP_URL =
+  "https://script.google.com/macros/s/AKfycbxBO5h_DHVJQNSMSiBQbNbb43I6nxxOaV6R5E0tDu8w5XNqjluMpQVmi9kKg3wxb1n8IA/exec";
 
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("pengeluaranForm");
+  const jumlahInput = form.jumlah;
 
-  form.addEventListener("submit", function (e) {
+  // ===== AUTO FORMAT RUPIAH (AMAN) =====
+  jumlahInput.addEventListener("input", () => {
+    const raw = jumlahInput.value.replace(/\D/g, "");
+    if (!raw) {
+      jumlahInput.value = "";
+      return;
+    }
+    jumlahInput.value = formatRupiah(raw);
+  });
+
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    prosesKirim(form);
+    kirimForm(form);
   });
 });
 
-function prosesKirim(form) {
-  const fileInput = form.querySelector('input[type="file"]');
+function formatRupiah(angka) {
+  return "Rp " + angka.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
-  const data = {
+function kirimForm(form) {
+  const fileInput = form.querySelector('input[type="file"]');
+  const jumlahBersih = form.jumlah.value.replace(/\D/g, "");
+
+  const payload = {
     tanggal: form.tanggal.value,
     kategori: form.kategori.value,
     deskripsi: form.deskripsi.value || "",
-    jumlah: form.jumlah.value.replace(/\D/g, "")
+    jumlah: jumlahBersih
   };
 
+  // ===== JIKA ADA FILE =====
   if (fileInput.files.length > 0) {
     const file = fileInput.files[0];
     const reader = new FileReader();
 
-    reader.onload = function () {
-      const base64 = reader.result.split(",")[1];
+    reader.onload = () => {
+      payload.fileBase64 = reader.result.split(",")[1];
+      payload.fileName = file.name;
+      payload.fileType = file.type;
 
-      data.fileBase64 = base64;
-      data.fileName = file.name;
-      data.fileType = file.type;
-
-      kirim(data, form);
+      submitData(payload, form);
     };
 
     reader.readAsDataURL(file);
   } else {
-    kirim(data, form);
+    submitData(payload, form);
   }
 }
 
-function kirim(data, form) {
+function submitData(data, form) {
   fetch(WEB_APP_URL, {
     method: "POST",
     headers: {
@@ -48,12 +64,12 @@ function kirim(data, form) {
     body: new URLSearchParams(data)
   })
     .then(res => res.json())
-    .then(result => {
-      if (result.status === "success") {
+    .then(res => {
+      if (res.status === "success") {
         alert("Data berhasil dikirim");
         form.reset();
       } else {
-        alert("Gagal: " + result.message);
+        alert("Gagal: " + res.message);
       }
     })
     .catch(err => {
